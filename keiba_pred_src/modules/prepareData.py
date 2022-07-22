@@ -22,6 +22,7 @@ def getHTMLRace(race_id_list: list, skip: bool = True):
         if skip and os.path.isfile(filename): #skipがTrueで、かつbinファイルが既に存在する場合は飛ばす
             print("race_id {} skipped".format(race_id))
             continue
+        html =  urlopen(url).read()
         with open(filename, "wb") as f:
             f.write(html) #保存
         time.sleep(1) #サーバーに負担をかけないように1秒待機する
@@ -29,7 +30,7 @@ def getHTMLRace(race_id_list: list, skip: bool = True):
 
 
 # getRowDataResults()
-def getRowDataResults(html_path_list: list):
+def getRowDataResults(html_path_list: list):  
     
     """
     raceページのhtmlを受け取って、レース結果テーブルに変換する関数
